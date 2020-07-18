@@ -37,7 +37,13 @@ public class ReverseListService {
      */
     public List<String> reverseListTheHardWay(List<String> inputList){
         List<String> outputList = new ArrayList<>();
-        inputList.forEach( listElement -> outputList.add(0,listElement) ); //Java8 forEach iterates in the expected order
+
+        //Verify the List.add(int i, Object object) method shifts the List rather than override an element:
+        // https://docs.oracle.com/javase/8/docs/api/java/util/List.html#add-int-E-
+        //Verify that forEach iterates in expected order:
+        //  https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html
+        //  https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html#forEach-java.util.function.Consumer-
+        inputList.forEach( listElement -> outputList.add(0,listElement) );
         return outputList;
     }
 }

@@ -22,9 +22,10 @@ class ReverseListServiceTest {
     private List<String> reverseThreeElementList;
     private List<String> nullElementList;
 
+    //I've been meaning to find a better way to handle Bean creation in Unit tests without Mockito:
+    //  https://www.baeldung.com/spring-boot-testing
     @TestConfiguration
     static class ReverseListServiceConfiguration {
-
         @Bean
         public ReverseListService reverseListServiceBean() {
             return new ReverseListService();
@@ -76,6 +77,9 @@ class ReverseListServiceTest {
         Assertions.assertNull( reversedNullElementList.get( reversedNullElementList.size()-1 ) );
     }
 
+    /**
+     * Normally, I wouldn't unit test a method maintained by a 3rd party
+     */
     @Test
     void reverseListWithCollections() {
         Assertions.assertLinesMatch( reverseListService.reverseListWithCollections(emptyList), emptyList,
@@ -88,6 +92,9 @@ class ReverseListServiceTest {
         Assertions.assertNull( reversedNullElementList.get( reversedNullElementList.size()-1 ) );
     }
 
+    /**
+     *
+     */
     @Test
     void reverseListTheHardWay() {
         Assertions.assertLinesMatch( reverseListService.reverseListTheHardWay(emptyList), emptyList,
